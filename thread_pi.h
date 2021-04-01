@@ -31,7 +31,7 @@ int tpool_join(tpool_t pool);
  * NULL is returned. Each tpool_future_get() resets the timeout status on
  * @future.
  */
-void *tpool_future_get(tpool_future_t future, unsigned int seconds);
+void *tpool_future_get(struct __threadpool *pool, struct __tpool_future *future, unsigned int seconds);
 
 /**
  * Destroy the future object and free resources once it is no longer used.
