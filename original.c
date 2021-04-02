@@ -2,17 +2,15 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <time.h>
-#include <stdio.h>
 
-
-#include "thread_pi.h"
+#include "original.h"
 
 enum __future_flags {
-    __FUTURE_RUNNING = 01,      /*0000 0001*/
-    __FUTURE_FINISHED = 02,     /*0000 0010*/
-    __FUTURE_TIMEOUT = 04,      /*0000 0100*/
-    __FUTURE_CANCELLED = 010,   /*0000 1010*/
-    __FUTURE_DESTROYED = 020,   /*0001 0100*/
+    __FUTURE_RUNNING = 01,
+    __FUTURE_FINISHED = 02,
+    __FUTURE_TIMEOUT = 04,
+    __FUTURE_CANCELLED = 010,
+    __FUTURE_DESTROYED = 020,
 };
 
 typedef struct __threadtask {
@@ -31,7 +29,6 @@ typedef struct __jobqueue {
 struct __tpool_future {
     int flag;
     void *result;
-    pthread_t pid;
     pthread_mutex_t mutex;
     pthread_cond_t cond_finished;
 };
@@ -75,11 +72,7 @@ int tpool_future_destroy(struct __tpool_future *future)
     return 0;
 }
 
-/**
- * CONTROL TASK TIMELIMIT
- */
-static void *jobqueue_fetch(void *queue);
-void *tpool_future_get(struct __threadpool *pool, struct __tpool_future *future, unsigned int seconds)
+void *tpool_future_get(struct __tpool_future *future, unsigned int seconds)
 {
     pthread_mutex_lock(&future->mutex);
     /* turn off the timeout bit set previously */
@@ -87,34 +80,13 @@ void *tpool_future_get(struct __threadpool *pool, struct __tpool_future *future,
     while ((future->flag & __FUTURE_FINISHED) == 0) {
         if (seconds) {
             struct timespec expire_time;
-            // clock_gettime(CLOCK_MONOTONIC, &expire_time);            
-            clock_gettime(CLOCK_REALTIME, &expire_time);
+            clock_gettime(CLOCK_MONOTONIC, &expire_time);
             expire_time.tv_sec += seconds;
             int status = pthread_cond_timedwait(&future->cond_finished,
                                                 &future->mutex, &expire_time);
-            // printf("status %d(110 == ETIMEDOUT)\n", status);
             if (status == ETIMEDOUT) {
                 future->flag |= __FUTURE_TIMEOUT;
-                pthread_t pid = future->pid;
                 pthread_mutex_unlock(&future->mutex);
-                int cancel_status = pthread_cancel(future->pid);
-                if (cancel_status != ESRCH) {
-                    printf("canceled\n");
-                    future = NULL;
-                    int i;
-                    for (i = 0;i < pool->count;i++)
-                        if (pool->workers[i] == pid) {
-                            printf("find out %d with pid %ld\n", i, pid);
-                            break;
-                        }
-                    pthread_join(pid, NULL);
-                    pthread_create(&pool->workers[i], NULL, jobqueue_fetch,
-                               (void *) pool->jobqueue);
-                }
-                else {
-                    pthread_mutex_unlock(&future->mutex);
-                    printf("cancel failed\n");
-                }
                 return NULL;
             }
         } else
@@ -125,7 +97,6 @@ void *tpool_future_get(struct __threadpool *pool, struct __tpool_future *future,
     pthread_mutex_unlock(&future->mutex);
     return future->result;
 }
-
 
 static jobqueue_t *jobqueue_create(void)
 {
@@ -168,38 +139,24 @@ static void __jobqueue_fetch_cleanup(void *arg)
     pthread_mutex_unlock(mutex);
 }
 
-static void __task_cleanup(void *arg) {
-    threadtask_t *task = (threadtask_t *) arg;
-    pthread_mutex_unlock(&task->future->mutex);
-    pthread_mutex_destroy(&task->future->mutex);
-    pthread_cond_destroy(&task->future->cond_finished);
-    free(task->future->result);
-    free(task->future);
-    free(task);
-}
-
 static void *jobqueue_fetch(void *queue)
 {
     jobqueue_t *jobqueue = (jobqueue_t *) queue;
     threadtask_t *task;
-    // int old_state;
-    int old_type;
+    int old_state;
 
-    // pthread_cleanup_push(__jobqueue_fetch_cleanup, (void *) &jobqueue->rwlock);
+    pthread_cleanup_push(__jobqueue_fetch_cleanup, (void *) &jobqueue->rwlock);
 
     while (1) {
         pthread_mutex_lock(&jobqueue->rwlock);
-        // pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &old_state);
-        // pthread_testcancel();
-        
-        /**
-         * Fetch job from jobqueue
-         */
+        pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &old_state);
+        pthread_testcancel();
+
         // GGG
         while (!jobqueue->tail)
             pthread_cond_wait(&jobqueue->cond_nonempty, &jobqueue->rwlock);
-        // pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, &old_state);
 
+        pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, &old_state);
         if (jobqueue->head == jobqueue->tail) {
             task = jobqueue->tail;
             jobqueue->head = jobqueue->tail = NULL;
@@ -214,58 +171,33 @@ static void *jobqueue_fetch(void *queue)
         }
         pthread_mutex_unlock(&jobqueue->rwlock);
 
-        /**
-         * Start working
-         */
         if (task->func) {
-            /**
-             * working or not, check the state (cancelled or running)
-             */
-            /***********************************************/
             pthread_mutex_lock(&task->future->mutex);
-            // task cancelled
             if (task->future->flag & __FUTURE_CANCELLED) {
                 pthread_mutex_unlock(&task->future->mutex);
                 free(task);
                 continue;
             } else {
-            // task running
                 task->future->flag |= __FUTURE_RUNNING;
-                task->future->pid = pthread_self();
                 pthread_mutex_unlock(&task->future->mutex);
             }
-            /***********************************************/
 
-            void *ret_value = NULL;
-            pthread_cleanup_push(__task_cleanup, task);
-            pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, &old_type);
-            // pthread_testcancel();
-            // FUNCTION START
-            ret_value = task->func(task->arg);
-            pthread_setcanceltype(PTHREAD_CANCEL_DISABLE, &old_type);
-            pthread_cleanup_pop(0);
-
-            // work continue
+            void *ret_value = task->func(task->arg);
             pthread_mutex_lock(&task->future->mutex);
-            /*if (task->future->flag & __FUTURE_DESTROYED) {
-                printf("cancel\n");
+            if (task->future->flag & __FUTURE_DESTROYED) {
                 pthread_mutex_unlock(&task->future->mutex);
                 pthread_mutex_destroy(&task->future->mutex);
                 pthread_cond_destroy(&task->future->cond_finished);
                 free(task->future);
-            } else {*/
-                printf("finished\n");
+            } else {
                 task->future->flag |= __FUTURE_FINISHED; // KKK
                 task->future->result = ret_value;
                 // LLL
                 pthread_cond_broadcast(&task->future->cond_finished);
                 pthread_mutex_unlock(&task->future->mutex);
-            // }
+            }
             free(task);
-            /***********************************************/
-
         } else {
-            // function work failed
             pthread_mutex_destroy(&task->future->mutex);
             pthread_cond_destroy(&task->future->cond_finished);
             free(task->future);
@@ -274,7 +206,7 @@ static void *jobqueue_fetch(void *queue)
         }
     }
 
-    // pthread_cleanup_pop(0);
+    pthread_cleanup_pop(0);
     pthread_exit(NULL);
 }
 

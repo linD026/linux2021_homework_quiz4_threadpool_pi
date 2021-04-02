@@ -1,0 +1,1044 @@
+desc: (none)
+cmd: ./cancel
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=215201
+mem_heap_B=104
+mem_heap_extra_B=16
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=215301
+mem_heap_B=128
+mem_heap_extra_B=32
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=215347
+mem_heap_B=160
+mem_heap_extra_B=40
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=218923
+mem_heap_B=432
+mem_heap_extra_B=48
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=221200
+mem_heap_B=704
+mem_heap_extra_B=56
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=221799
+mem_heap_B=976
+mem_heap_extra_B=64
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=222398
+mem_heap_B=1248
+mem_heap_extra_B=72
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=222808
+mem_heap_B=1280
+mem_heap_extra_B=80
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=222850
+mem_heap_B=1392
+mem_heap_extra_B=88
+mem_stacks_B=0
+heap_tree=detailed
+n6: 1392 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1088 0x40149CA: allocate_dtv (dl-tls.c:286)
+  n1: 1088 0x40149CA: _dl_allocate_tls (dl-tls.c:532)
+   n1: 1088 0x4862322: allocate_stack (allocatestack.c:622)
+    n1: 1088 0x4862322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+     n1: 1088 0x109F11: tpool_create (thread_pi.c:303)
+      n0: 1088 0x10A32A: main (main.c:40)
+ n1: 112 0x1094ED: tpool_future_create (thread_pi.c:47)
+  n1: 112 0x10A026: tpool_apply (thread_pi.c:329)
+   n0: 112 0x10A393: main (main.c:48)
+ n1: 104 0x109847: jobqueue_create (thread_pi.c:132)
+  n1: 104 0x109E4B: tpool_create (thread_pi.c:291)
+   n0: 104 0x10A32A: main (main.c:40)
+ n1: 32 0x109EBB: tpool_create (thread_pi.c:301)
+  n0: 32 0x10A32A: main (main.c:40)
+ n1: 32 0x10A01D: tpool_apply (thread_pi.c:328)
+  n0: 32 0x10A393: main (main.c:48)
+ n1: 24 0x109E59: tpool_create (thread_pi.c:292)
+  n0: 24 0x10A32A: main (main.c:40)
+#-----------
+snapshot=10
+#-----------
+time=223120
+mem_heap_B=1424
+mem_heap_extra_B=96
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=223162
+mem_heap_B=1536
+mem_heap_extra_B=104
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=223405
+mem_heap_B=1568
+mem_heap_extra_B=112
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=223447
+mem_heap_B=1680
+mem_heap_extra_B=120
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=223690
+mem_heap_B=1712
+mem_heap_extra_B=128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=223732
+mem_heap_B=1824
+mem_heap_extra_B=136
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=223975
+mem_heap_B=1856
+mem_heap_extra_B=144
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=224017
+mem_heap_B=1968
+mem_heap_extra_B=152
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=224260
+mem_heap_B=2000
+mem_heap_extra_B=160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=224302
+mem_heap_B=2112
+mem_heap_extra_B=168
+mem_stacks_B=0
+heap_tree=detailed
+n6: 2112 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1088 0x40149CA: allocate_dtv (dl-tls.c:286)
+  n1: 1088 0x40149CA: _dl_allocate_tls (dl-tls.c:532)
+   n1: 1088 0x4862322: allocate_stack (allocatestack.c:622)
+    n1: 1088 0x4862322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+     n1: 1088 0x109F11: tpool_create (thread_pi.c:303)
+      n0: 1088 0x10A32A: main (main.c:40)
+ n1: 672 0x1094ED: tpool_future_create (thread_pi.c:47)
+  n1: 672 0x10A026: tpool_apply (thread_pi.c:329)
+   n0: 672 0x10A393: main (main.c:48)
+ n1: 192 0x10A01D: tpool_apply (thread_pi.c:328)
+  n0: 192 0x10A393: main (main.c:48)
+ n1: 104 0x109847: jobqueue_create (thread_pi.c:132)
+  n1: 104 0x109E4B: tpool_create (thread_pi.c:291)
+   n0: 104 0x10A32A: main (main.c:40)
+ n1: 32 0x109EBB: tpool_create (thread_pi.c:301)
+  n0: 32 0x10A32A: main (main.c:40)
+ n1: 24 0x109E59: tpool_create (thread_pi.c:292)
+  n0: 24 0x10A32A: main (main.c:40)
+#-----------
+snapshot=20
+#-----------
+time=224545
+mem_heap_B=2144
+mem_heap_extra_B=176
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=224587
+mem_heap_B=2256
+mem_heap_extra_B=184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=224830
+mem_heap_B=2288
+mem_heap_extra_B=192
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=224872
+mem_heap_B=2400
+mem_heap_extra_B=200
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=233117
+mem_heap_B=2436
+mem_heap_extra_B=220
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=233740
+mem_heap_B=3634
+mem_heap_extra_B=230
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=233897
+mem_heap_B=3670
+mem_heap_extra_B=250
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=238133
+mem_heap_B=3726
+mem_heap_extra_B=266
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=239420
+mem_heap_B=4110
+mem_heap_extra_B=274
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=289989
+mem_heap_B=5134
+mem_heap_extra_B=282
+mem_stacks_B=0
+heap_tree=detailed
+n9: 5134 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1198 0x400D273: _dl_new_object (dl-object.c:89)
+  n1: 1198 0x4006E96: _dl_map_object_from_fd (dl-load.c:997)
+   n1: 1198 0x400A61A: _dl_map_object (dl-load.c:2236)
+    n1: 1198 0x4015D36: dl_open_worker (dl-open.c:513)
+     n1: 1198 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+      n1: 1198 0x40155F9: _dl_open (dl-open.c:837)
+       n1: 1198 0x4B2C860: do_dlopen (dl-libc.c:96)
+        n1: 1198 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+         n1: 1198 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+          n1: 1198 0x4B2C994: dlerror_run (dl-libc.c:46)
+           n1: 1198 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+            n1: 1198 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+             n1: 1198 0x486A043: pthread_cancel (pthread_cancel.c:38)
+              n1: 1198 0x1096F5: tpool_future_get (thread_pi.c:100)
+               n0: 1198 0x10A3E8: main (main.c:54)
+ n1: 1088 0x40149CA: allocate_dtv (dl-tls.c:286)
+  n1: 1088 0x40149CA: _dl_allocate_tls (dl-tls.c:532)
+   n1: 1088 0x4862322: allocate_stack (allocatestack.c:622)
+    n1: 1088 0x4862322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+     n1: 1088 0x109F11: tpool_create (thread_pi.c:303)
+      n0: 1088 0x10A32A: main (main.c:40)
+ n1: 1024 0x4A4EE83: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x4A5F04F: _IO_doallocbuf (genops.c:347)
+   n1: 1024 0x4A5E0AF: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+    n1: 1024 0x4A5C834: _IO_new_file_xsputn (fileops.c:1244)
+     n1: 1024 0x4A5C834: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+      n1: 1024 0x4A51677: puts (ioputs.c:40)
+       n1: 1024 0x10970E: tpool_future_get (thread_pi.c:102)
+        n0: 1024 0x10A3E8: main (main.c:54)
+ n1: 896 0x1094ED: tpool_future_create (thread_pi.c:47)
+  n1: 896 0x10A026: tpool_apply (thread_pi.c:329)
+   n0: 896 0x10A393: main (main.c:48)
+ n1: 384 0x401330A: _dl_check_map_versions (dl-version.c:274)
+  n1: 384 0x40160EC: dl_open_worker (dl-open.c:577)
+   n1: 384 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+    n1: 384 0x40155F9: _dl_open (dl-open.c:837)
+     n1: 384 0x4B2C860: do_dlopen (dl-libc.c:96)
+      n1: 384 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 384 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+        n1: 384 0x4B2C994: dlerror_run (dl-libc.c:46)
+         n1: 384 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+          n1: 384 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+           n1: 384 0x486A043: pthread_cancel (pthread_cancel.c:38)
+            n1: 384 0x1096F5: tpool_future_get (thread_pi.c:100)
+             n0: 384 0x10A3E8: main (main.c:54)
+ n1: 256 0x10A01D: tpool_apply (thread_pi.c:328)
+  n0: 256 0x10A393: main (main.c:48)
+ n0: 128 in 4 places, all below massif's threshold (1.00%)
+ n1: 104 0x109847: jobqueue_create (thread_pi.c:132)
+  n1: 104 0x109E4B: tpool_create (thread_pi.c:291)
+   n0: 104 0x10A32A: main (main.c:40)
+ n1: 56 0x400FC39: _dl_map_object_deps (dl-deps.c:479)
+  n1: 56 0x4015D9F: dl_open_worker (dl-open.c:571)
+   n1: 56 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+    n1: 56 0x40155F9: _dl_open (dl-open.c:837)
+     n1: 56 0x4B2C860: do_dlopen (dl-libc.c:96)
+      n1: 56 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 56 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+        n1: 56 0x4B2C994: dlerror_run (dl-libc.c:46)
+         n1: 56 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+          n1: 56 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+           n1: 56 0x486A043: pthread_cancel (pthread_cancel.c:38)
+            n1: 56 0x1096F5: tpool_future_get (thread_pi.c:100)
+             n0: 56 0x10A3E8: main (main.c:54)
+#-----------
+snapshot=30
+#-----------
+time=316894
+mem_heap_B=5134
+mem_heap_extra_B=282
+mem_stacks_B=0
+heap_tree=peak
+n9: 5134 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1198 0x400D273: _dl_new_object (dl-object.c:89)
+  n1: 1198 0x4006E96: _dl_map_object_from_fd (dl-load.c:997)
+   n1: 1198 0x400A61A: _dl_map_object (dl-load.c:2236)
+    n1: 1198 0x4015D36: dl_open_worker (dl-open.c:513)
+     n1: 1198 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+      n1: 1198 0x40155F9: _dl_open (dl-open.c:837)
+       n1: 1198 0x4B2C860: do_dlopen (dl-libc.c:96)
+        n1: 1198 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+         n1: 1198 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+          n1: 1198 0x4B2C994: dlerror_run (dl-libc.c:46)
+           n1: 1198 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+            n1: 1198 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+             n1: 1198 0x486A043: pthread_cancel (pthread_cancel.c:38)
+              n1: 1198 0x1096F5: tpool_future_get (thread_pi.c:100)
+               n0: 1198 0x10A3E8: main (main.c:54)
+ n1: 1088 0x40149CA: allocate_dtv (dl-tls.c:286)
+  n1: 1088 0x40149CA: _dl_allocate_tls (dl-tls.c:532)
+   n1: 1088 0x4862322: allocate_stack (allocatestack.c:622)
+    n1: 1088 0x4862322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+     n1: 1088 0x109F11: tpool_create (thread_pi.c:303)
+      n0: 1088 0x10A32A: main (main.c:40)
+ n1: 1024 0x4A4EE83: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x4A5F04F: _IO_doallocbuf (genops.c:347)
+   n1: 1024 0x4A5E0AF: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+    n1: 1024 0x4A5C834: _IO_new_file_xsputn (fileops.c:1244)
+     n1: 1024 0x4A5C834: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+      n1: 1024 0x4A51677: puts (ioputs.c:40)
+       n1: 1024 0x10970E: tpool_future_get (thread_pi.c:102)
+        n0: 1024 0x10A3E8: main (main.c:54)
+ n1: 896 0x1094ED: tpool_future_create (thread_pi.c:47)
+  n1: 896 0x10A026: tpool_apply (thread_pi.c:329)
+   n0: 896 0x10A393: main (main.c:48)
+ n1: 384 0x401330A: _dl_check_map_versions (dl-version.c:274)
+  n1: 384 0x40160EC: dl_open_worker (dl-open.c:577)
+   n1: 384 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+    n1: 384 0x40155F9: _dl_open (dl-open.c:837)
+     n1: 384 0x4B2C860: do_dlopen (dl-libc.c:96)
+      n1: 384 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 384 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+        n1: 384 0x4B2C994: dlerror_run (dl-libc.c:46)
+         n1: 384 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+          n1: 384 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+           n1: 384 0x486A043: pthread_cancel (pthread_cancel.c:38)
+            n1: 384 0x1096F5: tpool_future_get (thread_pi.c:100)
+             n0: 384 0x10A3E8: main (main.c:54)
+ n1: 256 0x10A01D: tpool_apply (thread_pi.c:328)
+  n0: 256 0x10A393: main (main.c:48)
+ n0: 128 in 4 places, all below massif's threshold (1.00%)
+ n1: 104 0x109847: jobqueue_create (thread_pi.c:132)
+  n1: 104 0x109E4B: tpool_create (thread_pi.c:291)
+   n0: 104 0x10A32A: main (main.c:40)
+ n1: 56 0x400FC39: _dl_map_object_deps (dl-deps.c:479)
+  n1: 56 0x4015D9F: dl_open_worker (dl-open.c:571)
+   n1: 56 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+    n1: 56 0x40155F9: _dl_open (dl-open.c:837)
+     n1: 56 0x4B2C860: do_dlopen (dl-libc.c:96)
+      n1: 56 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 56 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+        n1: 56 0x4B2C994: dlerror_run (dl-libc.c:46)
+         n1: 56 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+          n1: 56 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+           n1: 56 0x486A043: pthread_cancel (pthread_cancel.c:38)
+            n1: 56 0x1096F5: tpool_future_get (thread_pi.c:100)
+             n0: 56 0x10A3E8: main (main.c:54)
+#-----------
+snapshot=31
+#-----------
+time=316894
+mem_heap_B=5022
+mem_heap_extra_B=274
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=316925
+mem_heap_B=4990
+mem_heap_extra_B=266
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=352406
+mem_heap_B=4878
+mem_heap_extra_B=258
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=352437
+mem_heap_B=4846
+mem_heap_extra_B=250
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=386037
+mem_heap_B=4734
+mem_heap_extra_B=242
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=386068
+mem_heap_B=4702
+mem_heap_extra_B=234
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=418324
+mem_heap_B=4590
+mem_heap_extra_B=226
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=418355
+mem_heap_B=4558
+mem_heap_extra_B=218
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=448692
+mem_heap_B=4446
+mem_heap_extra_B=210
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=448723
+mem_heap_B=4414
+mem_heap_extra_B=202
+mem_stacks_B=0
+heap_tree=detailed
+n9: 4414 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1198 0x400D273: _dl_new_object (dl-object.c:89)
+  n1: 1198 0x4006E96: _dl_map_object_from_fd (dl-load.c:997)
+   n1: 1198 0x400A61A: _dl_map_object (dl-load.c:2236)
+    n1: 1198 0x4015D36: dl_open_worker (dl-open.c:513)
+     n1: 1198 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+      n1: 1198 0x40155F9: _dl_open (dl-open.c:837)
+       n1: 1198 0x4B2C860: do_dlopen (dl-libc.c:96)
+        n1: 1198 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+         n1: 1198 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+          n1: 1198 0x4B2C994: dlerror_run (dl-libc.c:46)
+           n1: 1198 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+            n1: 1198 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+             n1: 1198 0x486A043: pthread_cancel (pthread_cancel.c:38)
+              n1: 1198 0x1096F5: tpool_future_get (thread_pi.c:100)
+               n0: 1198 0x10A3E8: main (main.c:54)
+ n1: 1088 0x40149CA: allocate_dtv (dl-tls.c:286)
+  n1: 1088 0x40149CA: _dl_allocate_tls (dl-tls.c:532)
+   n1: 1088 0x4862322: allocate_stack (allocatestack.c:622)
+    n1: 1088 0x4862322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+     n1: 1088 0x109F11: tpool_create (thread_pi.c:303)
+      n0: 1088 0x10A32A: main (main.c:40)
+ n1: 1024 0x4A4EE83: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x4A5F04F: _IO_doallocbuf (genops.c:347)
+   n1: 1024 0x4A5E0AF: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+    n1: 1024 0x4A5C834: _IO_new_file_xsputn (fileops.c:1244)
+     n1: 1024 0x4A5C834: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+      n1: 1024 0x4A51677: puts (ioputs.c:40)
+       n1: 1024 0x10970E: tpool_future_get (thread_pi.c:102)
+        n0: 1024 0x10A3E8: main (main.c:54)
+ n1: 384 0x401330A: _dl_check_map_versions (dl-version.c:274)
+  n1: 384 0x40160EC: dl_open_worker (dl-open.c:577)
+   n1: 384 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+    n1: 384 0x40155F9: _dl_open (dl-open.c:837)
+     n1: 384 0x4B2C860: do_dlopen (dl-libc.c:96)
+      n1: 384 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 384 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+        n1: 384 0x4B2C994: dlerror_run (dl-libc.c:46)
+         n1: 384 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+          n1: 384 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+           n1: 384 0x486A043: pthread_cancel (pthread_cancel.c:38)
+            n1: 384 0x1096F5: tpool_future_get (thread_pi.c:100)
+             n0: 384 0x10A3E8: main (main.c:54)
+ n1: 336 0x1094ED: tpool_future_create (thread_pi.c:47)
+  n1: 336 0x10A026: tpool_apply (thread_pi.c:329)
+   n0: 336 0x10A393: main (main.c:48)
+ n0: 128 in 4 places, all below massif's threshold (1.00%)
+ n1: 104 0x109847: jobqueue_create (thread_pi.c:132)
+  n1: 104 0x109E4B: tpool_create (thread_pi.c:291)
+   n0: 104 0x10A32A: main (main.c:40)
+ n1: 96 0x10A01D: tpool_apply (thread_pi.c:328)
+  n0: 96 0x10A393: main (main.c:48)
+ n1: 56 0x400FC39: _dl_map_object_deps (dl-deps.c:479)
+  n1: 56 0x4015D9F: dl_open_worker (dl-open.c:571)
+   n1: 56 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+    n1: 56 0x40155F9: _dl_open (dl-open.c:837)
+     n1: 56 0x4B2C860: do_dlopen (dl-libc.c:96)
+      n1: 56 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 56 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+        n1: 56 0x4B2C994: dlerror_run (dl-libc.c:46)
+         n1: 56 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+          n1: 56 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+           n1: 56 0x486A043: pthread_cancel (pthread_cancel.c:38)
+            n1: 56 0x1096F5: tpool_future_get (thread_pi.c:100)
+             n0: 56 0x10A3E8: main (main.c:54)
+#-----------
+snapshot=41
+#-----------
+time=480613
+mem_heap_B=4302
+mem_heap_extra_B=194
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=480644
+mem_heap_B=4270
+mem_heap_extra_B=186
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=514054
+mem_heap_B=4158
+mem_heap_extra_B=178
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=514085
+mem_heap_B=4126
+mem_heap_extra_B=170
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=545916
+mem_heap_B=4014
+mem_heap_extra_B=162
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=545947
+mem_heap_B=3982
+mem_heap_extra_B=154
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=556084
+mem_heap_B=4014
+mem_heap_extra_B=162
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=556126
+mem_heap_B=4126
+mem_heap_extra_B=170
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=556497
+mem_heap_B=4158
+mem_heap_extra_B=178
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=556539
+mem_heap_B=4270
+mem_heap_extra_B=186
+mem_stacks_B=0
+heap_tree=detailed
+n9: 4270 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1198 0x400D273: _dl_new_object (dl-object.c:89)
+  n1: 1198 0x4006E96: _dl_map_object_from_fd (dl-load.c:997)
+   n1: 1198 0x400A61A: _dl_map_object (dl-load.c:2236)
+    n1: 1198 0x4015D36: dl_open_worker (dl-open.c:513)
+     n1: 1198 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+      n1: 1198 0x40155F9: _dl_open (dl-open.c:837)
+       n1: 1198 0x4B2C860: do_dlopen (dl-libc.c:96)
+        n1: 1198 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+         n1: 1198 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+          n1: 1198 0x4B2C994: dlerror_run (dl-libc.c:46)
+           n1: 1198 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+            n1: 1198 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+             n1: 1198 0x486A043: pthread_cancel (pthread_cancel.c:38)
+              n1: 1198 0x1096F5: tpool_future_get (thread_pi.c:100)
+               n0: 1198 0x10A3E8: main (main.c:54)
+ n1: 1088 0x40149CA: allocate_dtv (dl-tls.c:286)
+  n1: 1088 0x40149CA: _dl_allocate_tls (dl-tls.c:532)
+   n1: 1088 0x4862322: allocate_stack (allocatestack.c:622)
+    n1: 1088 0x4862322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+     n1: 1088 0x109F11: tpool_create (thread_pi.c:303)
+      n0: 1088 0x10A32A: main (main.c:40)
+ n1: 1024 0x4A4EE83: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x4A5F04F: _IO_doallocbuf (genops.c:347)
+   n1: 1024 0x4A5E0AF: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+    n1: 1024 0x4A5C834: _IO_new_file_xsputn (fileops.c:1244)
+     n1: 1024 0x4A5C834: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+      n1: 1024 0x4A51677: puts (ioputs.c:40)
+       n1: 1024 0x10970E: tpool_future_get (thread_pi.c:102)
+        n0: 1024 0x10A3E8: main (main.c:54)
+ n1: 384 0x401330A: _dl_check_map_versions (dl-version.c:274)
+  n1: 384 0x40160EC: dl_open_worker (dl-open.c:577)
+   n1: 384 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+    n1: 384 0x40155F9: _dl_open (dl-open.c:837)
+     n1: 384 0x4B2C860: do_dlopen (dl-libc.c:96)
+      n1: 384 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 384 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+        n1: 384 0x4B2C994: dlerror_run (dl-libc.c:46)
+         n1: 384 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+          n1: 384 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+           n1: 384 0x486A043: pthread_cancel (pthread_cancel.c:38)
+            n1: 384 0x1096F5: tpool_future_get (thread_pi.c:100)
+             n0: 384 0x10A3E8: main (main.c:54)
+ n1: 224 0x1094ED: tpool_future_create (thread_pi.c:47)
+  n2: 224 0x10A026: tpool_apply (thread_pi.c:329)
+   n1: 224 0x10A14C: tpool_join (thread_pi.c:356)
+    n0: 224 0x10A44E: main (main.c:62)
+   n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 128 in 4 places, all below massif's threshold (1.00%)
+ n1: 104 0x109847: jobqueue_create (thread_pi.c:132)
+  n1: 104 0x109E4B: tpool_create (thread_pi.c:291)
+   n0: 104 0x10A32A: main (main.c:40)
+ n2: 64 0x10A01D: tpool_apply (thread_pi.c:328)
+  n1: 64 0x10A14C: tpool_join (thread_pi.c:356)
+   n0: 64 0x10A44E: main (main.c:62)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 56 0x400FC39: _dl_map_object_deps (dl-deps.c:479)
+  n1: 56 0x4015D9F: dl_open_worker (dl-open.c:571)
+   n1: 56 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+    n1: 56 0x40155F9: _dl_open (dl-open.c:837)
+     n1: 56 0x4B2C860: do_dlopen (dl-libc.c:96)
+      n1: 56 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 56 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+        n1: 56 0x4B2C994: dlerror_run (dl-libc.c:46)
+         n1: 56 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+          n1: 56 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+           n1: 56 0x486A043: pthread_cancel (pthread_cancel.c:38)
+            n1: 56 0x1096F5: tpool_future_get (thread_pi.c:100)
+             n0: 56 0x10A3E8: main (main.c:54)
+#-----------
+snapshot=51
+#-----------
+time=556773
+mem_heap_B=4302
+mem_heap_extra_B=194
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=556815
+mem_heap_B=4414
+mem_heap_extra_B=202
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=557049
+mem_heap_B=4446
+mem_heap_extra_B=210
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=557091
+mem_heap_B=4558
+mem_heap_extra_B=218
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=557687
+mem_heap_B=4446
+mem_heap_extra_B=210
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=557718
+mem_heap_B=4414
+mem_heap_extra_B=202
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=566905
+mem_heap_B=4302
+mem_heap_extra_B=194
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=566936
+mem_heap_B=4270
+mem_heap_extra_B=186
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=576252
+mem_heap_B=4158
+mem_heap_extra_B=178
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=576283
+mem_heap_B=4126
+mem_heap_extra_B=170
+mem_stacks_B=0
+heap_tree=detailed
+n8: 4126 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1198 0x400D273: _dl_new_object (dl-object.c:89)
+  n1: 1198 0x4006E96: _dl_map_object_from_fd (dl-load.c:997)
+   n1: 1198 0x400A61A: _dl_map_object (dl-load.c:2236)
+    n1: 1198 0x4015D36: dl_open_worker (dl-open.c:513)
+     n1: 1198 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+      n1: 1198 0x40155F9: _dl_open (dl-open.c:837)
+       n1: 1198 0x4B2C860: do_dlopen (dl-libc.c:96)
+        n1: 1198 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+         n1: 1198 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+          n1: 1198 0x4B2C994: dlerror_run (dl-libc.c:46)
+           n1: 1198 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+            n1: 1198 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+             n1: 1198 0x486A043: pthread_cancel (pthread_cancel.c:38)
+              n1: 1198 0x1096F5: tpool_future_get (thread_pi.c:100)
+               n0: 1198 0x10A3E8: main (main.c:54)
+ n1: 1088 0x40149CA: allocate_dtv (dl-tls.c:286)
+  n1: 1088 0x40149CA: _dl_allocate_tls (dl-tls.c:532)
+   n1: 1088 0x4862322: allocate_stack (allocatestack.c:622)
+    n1: 1088 0x4862322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+     n1: 1088 0x109F11: tpool_create (thread_pi.c:303)
+      n0: 1088 0x10A32A: main (main.c:40)
+ n1: 1024 0x4A4EE83: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x4A5F04F: _IO_doallocbuf (genops.c:347)
+   n1: 1024 0x4A5E0AF: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+    n1: 1024 0x4A5C834: _IO_new_file_xsputn (fileops.c:1244)
+     n1: 1024 0x4A5C834: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+      n1: 1024 0x4A51677: puts (ioputs.c:40)
+       n1: 1024 0x10970E: tpool_future_get (thread_pi.c:102)
+        n0: 1024 0x10A3E8: main (main.c:54)
+ n1: 384 0x401330A: _dl_check_map_versions (dl-version.c:274)
+  n1: 384 0x40160EC: dl_open_worker (dl-open.c:577)
+   n1: 384 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+    n1: 384 0x40155F9: _dl_open (dl-open.c:837)
+     n1: 384 0x4B2C860: do_dlopen (dl-libc.c:96)
+      n1: 384 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 384 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+        n1: 384 0x4B2C994: dlerror_run (dl-libc.c:46)
+         n1: 384 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+          n1: 384 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+           n1: 384 0x486A043: pthread_cancel (pthread_cancel.c:38)
+            n1: 384 0x1096F5: tpool_future_get (thread_pi.c:100)
+             n0: 384 0x10A3E8: main (main.c:54)
+ n0: 160 in 5 places, all below massif's threshold (1.00%)
+ n1: 112 0x1094ED: tpool_future_create (thread_pi.c:47)
+  n2: 112 0x10A026: tpool_apply (thread_pi.c:329)
+   n1: 112 0x10A14C: tpool_join (thread_pi.c:356)
+    n0: 112 0x10A44E: main (main.c:62)
+   n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 104 0x109847: jobqueue_create (thread_pi.c:132)
+  n1: 104 0x109E4B: tpool_create (thread_pi.c:291)
+   n0: 104 0x10A32A: main (main.c:40)
+ n1: 56 0x400FC39: _dl_map_object_deps (dl-deps.c:479)
+  n1: 56 0x4015D9F: dl_open_worker (dl-open.c:571)
+   n1: 56 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+    n1: 56 0x40155F9: _dl_open (dl-open.c:837)
+     n1: 56 0x4B2C860: do_dlopen (dl-libc.c:96)
+      n1: 56 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 56 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+        n1: 56 0x4B2C994: dlerror_run (dl-libc.c:46)
+         n1: 56 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+          n1: 56 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+           n1: 56 0x486A043: pthread_cancel (pthread_cancel.c:38)
+            n1: 56 0x1096F5: tpool_future_get (thread_pi.c:100)
+             n0: 56 0x10A3E8: main (main.c:54)
+#-----------
+snapshot=61
+#-----------
+time=585330
+mem_heap_B=4014
+mem_heap_extra_B=162
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=585361
+mem_heap_B=3982
+mem_heap_extra_B=154
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=594932
+mem_heap_B=3950
+mem_heap_extra_B=146
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=595025
+mem_heap_B=3846
+mem_heap_extra_B=130
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=595059
+mem_heap_B=3822
+mem_heap_extra_B=114
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=600776
+mem_heap_B=2798
+mem_heap_extra_B=106
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=601747
+mem_heap_B=2742
+mem_heap_extra_B=90
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=603139
+mem_heap_B=2470
+mem_heap_extra_B=82
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=69
+#-----------
+time=604369
+mem_heap_B=2198
+mem_heap_extra_B=74
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=604803
+mem_heap_B=1926
+mem_heap_extra_B=66
+mem_stacks_B=0
+heap_tree=detailed
+n6: 1926 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1198 0x400D273: _dl_new_object (dl-object.c:89)
+  n1: 1198 0x4006E96: _dl_map_object_from_fd (dl-load.c:997)
+   n1: 1198 0x400A61A: _dl_map_object (dl-load.c:2236)
+    n1: 1198 0x4015D36: dl_open_worker (dl-open.c:513)
+     n1: 1198 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+      n1: 1198 0x40155F9: _dl_open (dl-open.c:837)
+       n1: 1198 0x4B2C860: do_dlopen (dl-libc.c:96)
+        n1: 1198 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+         n1: 1198 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+          n1: 1198 0x4B2C994: dlerror_run (dl-libc.c:46)
+           n1: 1198 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+            n1: 1198 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+             n1: 1198 0x486A043: pthread_cancel (pthread_cancel.c:38)
+              n1: 1198 0x1096F5: tpool_future_get (thread_pi.c:100)
+               n0: 1198 0x10A3E8: main (main.c:54)
+ n1: 384 0x401330A: _dl_check_map_versions (dl-version.c:274)
+  n1: 384 0x40160EC: dl_open_worker (dl-open.c:577)
+   n1: 384 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+    n1: 384 0x40155F9: _dl_open (dl-open.c:837)
+     n1: 384 0x4B2C860: do_dlopen (dl-libc.c:96)
+      n1: 384 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 384 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+        n1: 384 0x4B2C994: dlerror_run (dl-libc.c:46)
+         n1: 384 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+          n1: 384 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+           n1: 384 0x486A043: pthread_cancel (pthread_cancel.c:38)
+            n1: 384 0x1096F5: tpool_future_get (thread_pi.c:100)
+             n0: 384 0x10A3E8: main (main.c:54)
+ n1: 272 0x40149CA: allocate_dtv (dl-tls.c:286)
+  n1: 272 0x40149CA: _dl_allocate_tls (dl-tls.c:532)
+   n1: 272 0x4862322: allocate_stack (allocatestack.c:622)
+    n1: 272 0x4862322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+     n1: 272 0x109F11: tpool_create (thread_pi.c:303)
+      n0: 272 0x10A32A: main (main.c:40)
+ n1: 36 0x400D5A7: _dl_new_object (dl-object.c:196)
+  n1: 36 0x4006E96: _dl_map_object_from_fd (dl-load.c:997)
+   n1: 36 0x400A61A: _dl_map_object (dl-load.c:2236)
+    n1: 36 0x4015D36: dl_open_worker (dl-open.c:513)
+     n1: 36 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+      n1: 36 0x40155F9: _dl_open (dl-open.c:837)
+       n1: 36 0x4B2C860: do_dlopen (dl-libc.c:96)
+        n1: 36 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+         n1: 36 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+          n1: 36 0x4B2C994: dlerror_run (dl-libc.c:46)
+           n1: 36 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+            n1: 36 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+             n1: 36 0x486A043: pthread_cancel (pthread_cancel.c:38)
+              n1: 36 0x1096F5: tpool_future_get (thread_pi.c:100)
+               n0: 36 0x10A3E8: main (main.c:54)
+ n1: 36 0x401F5CE: strdup (strdup.c:42)
+  n1: 36 0x4019A81: _dl_load_cache_lookup (dl-cache.c:338)
+   n1: 36 0x400A989: _dl_map_object (dl-load.c:2102)
+    n1: 36 0x4015D36: dl_open_worker (dl-open.c:513)
+     n1: 36 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+      n1: 36 0x40155F9: _dl_open (dl-open.c:837)
+       n1: 36 0x4B2C860: do_dlopen (dl-libc.c:96)
+        n1: 36 0x4B2D8B7: _dl_catch_exception (dl-error-skeleton.c:208)
+         n1: 36 0x4B2D982: _dl_catch_error (dl-error-skeleton.c:227)
+          n1: 36 0x4B2C994: dlerror_run (dl-libc.c:46)
+           n1: 36 0x4B2C994: __libc_dlopen_mode (dl-libc.c:195)
+            n1: 36 0x486D99A: pthread_cancel_init (unwind-forcedunwind.c:53)
+             n1: 36 0x486A043: pthread_cancel (pthread_cancel.c:38)
+              n1: 36 0x1096F5: tpool_future_get (thread_pi.c:100)
+               n0: 36 0x10A3E8: main (main.c:54)
+ n0: 0 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=71
+#-----------
+time=605237
+mem_heap_B=1654
+mem_heap_extra_B=58
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=72
+#-----------
+time=607338
+mem_heap_B=1270
+mem_heap_extra_B=50
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=73
+#-----------
+time=607370
+mem_heap_B=1234
+mem_heap_extra_B=30
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=74
+#-----------
+time=607420
+mem_heap_B=1198
+mem_heap_extra_B=10
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=75
+#-----------
+time=607525
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty

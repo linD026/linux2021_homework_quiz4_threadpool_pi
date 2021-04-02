@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
+#include <pthread.h>
 
 #include "thread_pi.h"
 
@@ -21,16 +22,18 @@ static void *bpp(void *arg)
 }
 
 static void *dummy(void *arg) {
-    srandom(time(NULL));
-    sleep( random() % 5);
+    // srandom(time(NULL));
+    // sleep( random() % 10);
+    sleep(10);
     double *product = malloc(sizeof(double));
     printf("dummy %d\n", *(int*)arg);
+    // printf("pid is %ld\n", pthread_self());
     *product = 1;
     return (void *) product;
 }
 
 #define task_n 8
-#define wait_t 2
+#define wait_t 1
 int main()
 {
     // create the thread and each thread loop for fetch work. (empty then wait)
