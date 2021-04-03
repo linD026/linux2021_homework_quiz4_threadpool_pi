@@ -8,6 +8,8 @@
 #include "thread_pi.h"
 
 #define PRECISION 100 /* upper bound in BPP sum */
+void test_dummy(void);
+void test1 (void);
 
 /* Use Bailey–Borwein–Plouffe formula to approximate PI */
 static void *bpp(void *arg)
@@ -22,9 +24,9 @@ static void *bpp(void *arg)
 }
 
 static void *dummy(void *arg) {
-    // srandom(time(NULL));
-    // sleep( random() % 10);
-    sleep(10);
+    srandom(time(NULL));
+    sleep( random() % 10);
+    // sleep(10);
     double *product = malloc(sizeof(double));
     printf("dummy %d\n", *(int*)arg);
     // printf("pid is %ld\n", pthread_self());
@@ -36,6 +38,11 @@ static void *dummy(void *arg) {
 #define wait_t 1
 int main()
 {
+    test_dummy();
+    return 0;
+}
+
+void test_dummy(void) {
     // create the thread and each thread loop for fetch work. (empty then wait)
     tpool_t pool = tpool_create(4);
     tpool_future_t futures[task_n];
@@ -61,7 +68,6 @@ int main()
 
     tpool_join(pool);
     printf("sum %d\n", sum);
-    return 0;
 }
 
 void test1 (void) {

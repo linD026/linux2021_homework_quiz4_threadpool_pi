@@ -185,12 +185,12 @@ static void *jobqueue_fetch(void *queue)
     // int old_state;
     int old_type;
 
-    // pthread_cleanup_push(__jobqueue_fetch_cleanup, (void *) &jobqueue->rwlock);
+    pthread_cleanup_push(__jobqueue_fetch_cleanup, (void *) &jobqueue->rwlock);
 
     while (1) {
         pthread_mutex_lock(&jobqueue->rwlock);
         // pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &old_state);
-        // pthread_testcancel();
+        pthread_testcancel();
         
         /**
          * Fetch job from jobqueue
@@ -204,6 +204,7 @@ static void *jobqueue_fetch(void *queue)
             task = jobqueue->tail;
             jobqueue->head = jobqueue->tail = NULL;
         } else {
+            /*origin
             threadtask_t *tmp;
             for (tmp = jobqueue->head; tmp->next != jobqueue->tail;
                  tmp = tmp->next)
@@ -211,11 +212,17 @@ static void *jobqueue_fetch(void *queue)
             task = tmp->next;
             tmp->next = NULL;
             jobqueue->tail = tmp;
+            //*/
+
+           ///* ALTER
+            task = jobqueue->head;
+            jobqueue->head = task->next;
+           //*/
         }
         pthread_mutex_unlock(&jobqueue->rwlock);
 
         /**
-         * Start working
+         * Start working (fetched the work)
          */
         if (task->func) {
             /**
@@ -239,10 +246,9 @@ static void *jobqueue_fetch(void *queue)
             void *ret_value = NULL;
             pthread_cleanup_push(__task_cleanup, task);
             pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, &old_type);
-            // pthread_testcancel();
             // FUNCTION START
             ret_value = task->func(task->arg);
-            pthread_setcanceltype(PTHREAD_CANCEL_DISABLE, &old_type);
+            pthread_setcanceltype(PTHREAD_CANCEL_DEFERRED, &old_type);
             pthread_cleanup_pop(0);
 
             // work continue
@@ -274,7 +280,7 @@ static void *jobqueue_fetch(void *queue)
         }
     }
 
-    // pthread_cleanup_pop(0);
+    pthread_cleanup_pop(0);
     pthread_exit(NULL);
 }
 
@@ -323,8 +329,15 @@ struct __tpool_future *tpool_apply(struct __threadpool *pool,
         new_head->func = func, new_head->arg = arg, new_head->future = future;
         pthread_mutex_lock(&jobqueue->rwlock);
         if (jobqueue->head) {
+            /*origin
             new_head->next = jobqueue->head;
             jobqueue->head = new_head;
+            //*/
+            
+            ///* ALTER
+            jobqueue->tail->next = new_head;
+            jobqueue->tail = new_head;
+            //*/
         } else {
             jobqueue->head = jobqueue->tail = new_head;
             // HHH
