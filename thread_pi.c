@@ -260,7 +260,7 @@ static void *jobqueue_fetch(void *queue)
                 pthread_cond_destroy(&task->future->cond_finished);
                 free(task->future);
             } else {*/
-                printf("finished\n");
+                // printf("finished\n");
                 task->future->flag |= __FUTURE_FINISHED; // KKK
                 task->future->result = ret_value;
                 // LLL

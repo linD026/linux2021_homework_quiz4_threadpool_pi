@@ -34,11 +34,40 @@ static void *dummy(void *arg) {
     return (void *) product;
 }
 
-#define task_n 8
+void t1(void *arg) {
+	printf("t1 is running on thread \n");
+}
+void t2(void *arg) {
+	printf("t2 is running on thread \n");
+}
+void t3(void *arg) {
+	printf("t3 is running on thread \n");
+}
+void t4(void *arg) {
+	printf("t4 is running on thread \n");
+}
+
+#define task_n 200
 #define wait_t 1
 int main()
 {
-    test_dummy();
+    tpool_t pool = tpool_create(8);
+    tpool_future_t future[4];
+    for (int i = 0;i < task_n;i++) {
+        future[0] = tpool_apply(pool, (void* )t1, NULL);
+        future[1] = tpool_apply(pool, (void* )t2, NULL);
+        future[2] = tpool_apply(pool, (void* )t3, NULL);
+        future[3] = tpool_apply(pool, (void* )t4, NULL);
+        for (int i = 0;i < 4;i++) {
+            tpool_future_get(pool, future[i], 0);
+            tpool_future_destroy(future[i]);
+        }
+    }
+
+    sleep(1);
+
+    tpool_join(pool);
+
     return 0;
 }
 
