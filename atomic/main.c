@@ -35,7 +35,7 @@ static void *dummy(void *arg) {
 }
 
 
-#define task_n 100
+#define task_n 10
 #define wait_t 0
 int main()
 {
@@ -66,7 +66,7 @@ void test_dummy(void) {
             free(result);
         }
     }
-
+    printf("work done\n");
     tpool_join(pool);
     printf("sum %d\n", sum);
 }
