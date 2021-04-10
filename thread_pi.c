@@ -196,7 +196,7 @@ static void *jobqueue_fetch(void *queue)
          * Fetch job from jobqueue
          */
         // GGG
-        while (!jobqueue->tail)
+        while (!jobqueue->head)
             pthread_cond_wait(&jobqueue->cond_nonempty, &jobqueue->rwlock);
         // pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, &old_state);
 
@@ -249,7 +249,6 @@ static void *jobqueue_fetch(void *queue)
             // FUNCTION START
             ret_value = task->func(task->arg);
             pthread_setcanceltype(PTHREAD_CANCEL_DEFERRED, &old_type);
-            pthread_cleanup_pop(0);
 
             // work continue
             pthread_mutex_lock(&task->future->mutex);
@@ -268,7 +267,10 @@ static void *jobqueue_fetch(void *queue)
                 pthread_mutex_unlock(&task->future->mutex);
             // }
             free(task);
+            task = NULL;
             /***********************************************/
+
+            pthread_cleanup_pop(0);
 
         } else {
             // function work failed
@@ -323,29 +325,29 @@ struct __tpool_future *tpool_apply(struct __threadpool *pool,
                                    void *arg)
 {
     jobqueue_t *jobqueue = pool->jobqueue;
-    threadtask_t *new_head = malloc(sizeof(threadtask_t));
+    threadtask_t *new_tail = malloc(sizeof(threadtask_t));
     struct __tpool_future *future = tpool_future_create();
-    if (new_head && future) {
-        new_head->func = func, new_head->arg = arg, new_head->future = future;
+    if (new_tail && future) {
+        new_tail->func = func, new_tail->arg = arg, new_tail->future = future;
         pthread_mutex_lock(&jobqueue->rwlock);
-        if (jobqueue->head) {
+        if (jobqueue->tail) {
             /*origin
             new_head->next = jobqueue->head;
             jobqueue->head = new_head;
             //*/
             
             ///* ALTER
-            jobqueue->tail->next = new_head;
-            jobqueue->tail = new_head;
+            jobqueue->tail->next = new_tail;
+            jobqueue->tail = new_tail;
             //*/
         } else {
-            jobqueue->head = jobqueue->tail = new_head;
+            jobqueue->head = jobqueue->tail = new_tail;
             // HHH
             pthread_cond_broadcast(&jobqueue->cond_nonempty);
         }
         pthread_mutex_unlock(&jobqueue->rwlock);
-    } else if (new_head) {
-        free(new_head);
+    } else if (new_tail) {
+        free(new_tail);
         return NULL;
     } else if (future) {
         tpool_future_destroy(future);

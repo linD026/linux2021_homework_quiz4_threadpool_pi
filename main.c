@@ -7,7 +7,7 @@
 
 #include "thread_pi.h"
 
-#define PRECISION 100 /* upper bound in BPP sum */
+#define PRECISION 10 /* upper bound in BPP sum */
 void test_dummy(void);
 void test1 (void);
 
@@ -24,8 +24,8 @@ static void *bpp(void *arg)
 }
 
 static void *dummy(void *arg) {
-    srandom(time(NULL));
-    sleep( random() % 10);
+    // srandom(time(NULL));
+    // sleep( random() % 10);
     // sleep(10);
     double *product = malloc(sizeof(double));
     printf("dummy %d\n", *(int*)arg);
@@ -34,40 +34,12 @@ static void *dummy(void *arg) {
     return (void *) product;
 }
 
-void t1(void *arg) {
-	printf("t1 is running on thread \n");
-}
-void t2(void *arg) {
-	printf("t2 is running on thread \n");
-}
-void t3(void *arg) {
-	printf("t3 is running on thread \n");
-}
-void t4(void *arg) {
-	printf("t4 is running on thread \n");
-}
 
-#define task_n 200
-#define wait_t 1
+#define task_n 10
+#define wait_t 0
 int main()
 {
-    tpool_t pool = tpool_create(8);
-    tpool_future_t future[4];
-    for (int i = 0;i < task_n;i++) {
-        future[0] = tpool_apply(pool, (void* )t1, NULL);
-        future[1] = tpool_apply(pool, (void* )t2, NULL);
-        future[2] = tpool_apply(pool, (void* )t3, NULL);
-        future[3] = tpool_apply(pool, (void* )t4, NULL);
-        for (int i = 0;i < 4;i++) {
-            tpool_future_get(pool, future[i], 0);
-            tpool_future_destroy(future[i]);
-        }
-    }
-
-    sleep(1);
-
-    tpool_join(pool);
-
+    test_dummy();
     return 0;
 }
 
@@ -121,7 +93,41 @@ void test1 (void) {
         free(result);
     }
 
+    printf("thread done\n");
     tpool_join(pool);
     printf("PI calculated with %d terms: %.15f\n", PRECISION + 1, bpp_sum);  
 }
 
+
+
+void t1(void *arg) {
+	printf("t1 is running on thread \n");
+}
+void t2(void *arg) {
+	printf("t2 is running on thread \n");
+}
+void t3(void *arg) {
+	printf("t3 is running on thread \n");
+}
+void t4(void *arg) {
+	printf("t4 is running on thread \n");
+}
+
+void test_atomic_cmp(void) {
+    tpool_t pool = tpool_create(8);
+    tpool_future_t future[4];
+    for (int i = 0;i < task_n;i++) {
+        future[0] = tpool_apply(pool, (void* )t1, NULL);
+        future[1] = tpool_apply(pool, (void* )t2, NULL);
+        future[2] = tpool_apply(pool, (void* )t3, NULL);
+        future[3] = tpool_apply(pool, (void* )t4, NULL);
+        for (int i = 0;i < 4;i++) {
+            tpool_future_get(pool, future[i], 0);
+            tpool_future_destroy(future[i]);
+        }
+    }
+
+    sleep(1);
+
+    tpool_join(pool);
+}
