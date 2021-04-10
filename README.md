@@ -2,8 +2,18 @@
 
 ## Makefile
 
-build : make
-test  : make test
-massif: make massif
-perf  : make perf
-clean : make clean
+
+```
+compile : make
+
+test    : make test
+1000 times 
+
+massif  : make massif
+memory usage
+
+perf    : make perf
+cpu usage
+
+clean   : make clean
+```
