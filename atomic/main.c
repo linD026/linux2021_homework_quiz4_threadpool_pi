@@ -29,6 +29,7 @@
 void test_dummy(void);
 void test1(void);
 void benchmark(int thread_pool_size);
+void benchmark_split(int thread_pool_size, int times);
 void __benchmark(int thread_pool_size);
 
 /* Use Bailey–Borwein–Plouffe formula to approximate PI */
@@ -56,8 +57,8 @@ static void *dummy(void *arg) {
 #define task_n 10
 #define wait_t 0
 int main() {
-  time_check(__benchmark(16));
-  // benchmark(100);
+  // time_check(__benchmark(16));
+  benchmark(100);
   return 0;
 }
 
@@ -137,6 +138,28 @@ void test_atomic_cmp(void) {
 
   tpool_join(pool);
 }
+
+void benchmark_split(int thread_pool_size, int times) {
+  FILE *ptr = NULL;
+  ptr = fopen("bpp_benckmark_atomic.txt", "w");
+  if (!ptr)
+    return;
+  struct timespec time_start;
+  struct timespec time_end;
+  double during;
+  int time_i = 0;
+  printf("start testing\n");
+  for (time_i = 1; time_i < times + 1; time_i++) {
+    clock_gettime(CLOCK_MONOTONIC, &time_start);
+    __benchmark(time_i);
+    clock_gettime(CLOCK_MONOTONIC, &time_end);
+    during = time_diff(time_start, time_end);
+    fprintf(ptr, "%d %f\n", time_i, during);
+    printf("%d finished\n", time_i);
+  }
+  fclose(ptr);
+}
+
 
 void benchmark(int thread_pool_size) {
   FILE *ptr = NULL;
