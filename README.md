@@ -6,6 +6,9 @@
 ```
 compile : make
 
+one time: make one
+one time test
+
 test    : make test
 1000 times 
 
@@ -14,6 +17,9 @@ memory usage
 
 perf    : make perf
 cpu usage
+
+address : make address
+address sanitizer
 
 clean   : make clean
 ```
