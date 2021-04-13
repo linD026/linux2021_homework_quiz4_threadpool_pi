@@ -59,7 +59,7 @@ static void *dummy(void *arg) {
 int main() {
   // time_check(__benchmark(16));
   // benchmark(100);
-  benchmark_split(16, 200);
+  benchmark_split(4, 200);
   return 0;
 }
 
@@ -174,7 +174,7 @@ void benchmark(int thread_pool_size) {
   printf("start testing\n");
   for (time_i = 1; time_i < thread_pool_size; time_i++) {
     clock_gettime(CLOCK_MONOTONIC, &time_start);
-    __benchmark(time_i);
+    __benchmark(thread_pool_size);
     clock_gettime(CLOCK_MONOTONIC, &time_end);
     during = time_diff(time_start, time_end);
     fprintf(ptr, "%d %f\n", time_i, during);
