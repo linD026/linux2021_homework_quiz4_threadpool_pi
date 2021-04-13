@@ -58,7 +58,8 @@ static void *dummy(void *arg) {
 #define wait_t 0
 int main() {
   // time_check(__benchmark(16));
-  benchmark(100);
+  // benchmark(100);
+  benchmark_split(16, 200);
   return 0;
 }
 
@@ -141,7 +142,7 @@ void test_atomic_cmp(void) {
 
 void benchmark_split(int thread_pool_size, int times) {
   FILE *ptr = NULL;
-  ptr = fopen("bpp_benckmark_atomic.txt", "w");
+  ptr = fopen("bpp_benckmark_normal.txt", "w");
   if (!ptr)
     return;
   struct timespec time_start;
