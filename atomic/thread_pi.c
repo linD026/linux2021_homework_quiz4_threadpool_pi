@@ -161,9 +161,10 @@ static jobqueue_t *jobqueue_create(void)
 
 #define water_mark 50
 static void jobqueue_free_list_through_and_clean(jobqueue_t *jobqueue, threadtask_t *new_tail) {
-        while (atomic_load(&jobqueue->tail_stop));
-        atomic_fetch_add(&jobqueue->free_list_adding, 1);
+        //while (atomic_load(&jobqueue->tail_stop));
+        //atomic_fetch_add(&jobqueue->free_list_adding, 1);
         new_tail->next = NULL;
+        // atomic_store(&new_tail->next, NULL);
 
         while (1) {
             threadtask_t *old_tail = atomic_load(&jobqueue->free_list_tail);
@@ -187,19 +188,18 @@ static void jobqueue_free_list_clean(jobqueue_t *jobqueue) {
         if (atomic_load(&jobqueue->tail_stop) == true)
             return;
 
+        // atomic_thread_fence(memory_order_seq_cst);
         while (atomic_flag_test_and_set(&jobqueue->free_mode) == 1);
 
         // printf("free_list_num %d \n", atomic_load(&jobqueue->free_list_num));        
-        if (atomic_load(&jobqueue->free_list_num) <= water_mark) {
+        if (atomic_load(&jobqueue->free_list_num) < water_mark) {
             atomic_flag_clear(&jobqueue->free_mode);
-            // printf("reget\n");
             return;
         }
 
         // block add into free list
         // atomic_store(&jobqueue->free_list_num, water_mark);
         atomic_store(&jobqueue->tail_stop, true);
-
 
         // waiting all work done
         // printf("free_list_adding: %d\n", atomic_load(&jobqueue->free_list_adding));
@@ -209,16 +209,15 @@ static void jobqueue_free_list_clean(jobqueue_t *jobqueue) {
 
         threadtask_t *ptr = atomic_load(&jobqueue->free_list_head);
         threadtask_t *next = NULL;
-        for (;ptr->next;) {
+        for (;ptr != atomic_load(&jobqueue->free_list_tail);) {
             next = ptr->next;
             free(ptr);
             ptr = next;
         }
-        
-        ptr->next = NULL;
+        // atomic_store(&ptr->next, NULL);
 
         jobqueue->free_list_head = ATOMIC_VAR_INIT(ptr);
-        jobqueue->free_list_tail = ATOMIC_VAR_INIT(ptr);
+        // jobqueue->free_list_tail = ATOMIC_VAR_INIT(ptr);
 
         atomic_store(&jobqueue->free_list_num, 0);
         atomic_store(&jobqueue->tail_stop, false);
@@ -284,6 +283,8 @@ static void *jobqueue_fetch(void *queue)
         /**
          * maybe the object base is freed, but task is goin to get the base->next;
          */
+        
+        /*
         while (atomic_flag_test_and_set(&jobqueue->head_stop) == 1);
         
         while (1) {
@@ -298,8 +299,28 @@ static void *jobqueue_fetch(void *queue)
                 }
             }
         }
-        atomic_flag_clear(&jobqueue->head_stop);
-   
+        atomic_flag_clear(&jobqueue->head_stop);*/
+
+        //while (atomic_flag_test_and_set(&jobqueue->head_stop) == 1);
+        while (1) {
+            while (atomic_flag_test_and_set(&jobqueue->head_stop) == 1);
+            base = atomic_load(&jobqueue->head);
+            task = atomic_load(&base->next);
+            // atomic_flag_clear(&jobqueue->head_stop);
+            if (task != NULL) {
+                if (atomic_compare_exchange_strong(&jobqueue->head, &base, task)) {
+                    while (atomic_load(&jobqueue->tail_stop));
+                    atomic_fetch_add(&jobqueue->free_list_adding, 1);
+                    atomic_flag_clear(&jobqueue->head_stop);
+                    jobqueue_free_list_through_and_clean(jobqueue, base);
+                    break;                  
+                }                      
+            }
+            atomic_flag_clear(&jobqueue->head_stop);
+        }
+        //atomic_flag_clear(&jobqueue->head_stop);
+
+
         /**
          * Start working (fetched the work)
          */
@@ -341,6 +362,9 @@ static void *jobqueue_fetch(void *queue)
             // task = NULL;
             pthread_cleanup_pop(0);
             // printf("num %d need > water mark %d\n", atomic_load(&jobqueue->free_list_num), water_mark);
+ 
+            atomic_thread_fence(memory_order_seq_cst);
+
             jobqueue_free_list_clean(jobqueue);
 
             /***********************************************/
@@ -355,6 +379,9 @@ static void *jobqueue_fetch(void *queue)
             */
             // printf("get stop\n");
             // tpool_future_destroy(task->future);
+            
+            // atomic_thread_fence(memory_order_seq_cst);
+
             jobqueue_free_list_clean(jobqueue);
             break;
         }
@@ -416,6 +443,8 @@ struct __tpool_future *tpool_apply(struct __threadpool *pool,
     if (new_tail && det) {
         new_tail->func = func, new_tail->arg = arg, new_tail->future = future;
         new_tail->next = NULL;
+
+        atomic_thread_fence(memory_order_seq_cst);
 
        while (1) {
             threadtask_t *old_tail = atomic_load(&jobqueue->tail);

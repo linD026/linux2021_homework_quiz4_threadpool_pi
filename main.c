@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include <assert.h>
 
 #include "thread_pi.h"
 
@@ -26,10 +27,10 @@
     printf("%f  ", during);                                                    \
   } while (0)
 
-void test_dummy(void);
+void test_dummy(int thread_pool_size);
 void test1(void);
-void benchmark(int thread_pool_size);
-void benchmark_split(int thread_pool_size, int times);
+void benchmark(int thread_pool_size, void (*func)(int thread_pool_size));
+void benchmark_split(int thread_pool_size, int times, void(*func)(int thread_pool_size));
 void __benchmark(int thread_pool_size);
 
 /* Use Bailey–Borwein–Plouffe formula to approximate PI */
@@ -48,24 +49,25 @@ static void *dummy(void *arg) {
   // sleep( random() % 10);
   // sleep(10);
   double *product = malloc(sizeof(double));
-  printf("dummy %d\n", *(int *)arg);
+  // printf("dummy %d\n", *(int *)arg);
   // printf("pid is %ld\n", pthread_self());
   *product = 1;
   return (void *)product;
 }
 
-#define task_n 10
+#define task_n 1000
 #define wait_t 0
 int main() {
   // time_check(__benchmark(16));
-  // benchmark(100);
-  benchmark_split(4, 200);
+  // test_dummy(20);
+  benchmark(100, __benchmark);
+  // benchmark_split(12, 10000, __benchmark);
   return 0;
 }
 
-void test_dummy(void) {
+void test_dummy(int thread_pool_size) {
   // create the thread and each thread loop for fetch work. (empty then wait)
-  tpool_t pool = tpool_create(4);
+  tpool_t pool = tpool_create(thread_pool_size);
   tpool_future_t futures[task_n];
   int temp[task_n] = {0};
 
@@ -85,9 +87,11 @@ void test_dummy(void) {
       free(result);
     }
   }
-  printf("work done\n");
+  // printf("work done\n");
   tpool_join(pool);
   printf("sum %d\n", sum);
+  assert(sum == task_n);
+  printf("work done\n");
 }
 
 void test1(void) {
@@ -140,7 +144,7 @@ void test_atomic_cmp(void) {
   tpool_join(pool);
 }
 
-void benchmark_split(int thread_pool_size, int times) {
+void benchmark_split(int thread_pool_size, int times, void(*func)(int thread_pool_size)) {
   FILE *ptr = NULL;
   ptr = fopen("bpp_benckmark_normal.txt", "w");
   if (!ptr)
@@ -152,7 +156,7 @@ void benchmark_split(int thread_pool_size, int times) {
   printf("start testing\n");
   for (time_i = 1; time_i < times + 1; time_i++) {
     clock_gettime(CLOCK_MONOTONIC, &time_start);
-    __benchmark(time_i);
+    func(thread_pool_size);
     clock_gettime(CLOCK_MONOTONIC, &time_end);
     during = time_diff(time_start, time_end);
     fprintf(ptr, "%d %f\n", time_i, during);
@@ -162,7 +166,7 @@ void benchmark_split(int thread_pool_size, int times) {
 }
 
 
-void benchmark(int thread_pool_size) {
+void benchmark(int thread_pool_size, void (*func)(int thread_pool_size)){
   FILE *ptr = NULL;
   ptr = fopen("bpp_benckmark_normal.txt", "w");
   if (!ptr)
@@ -174,7 +178,7 @@ void benchmark(int thread_pool_size) {
   printf("start testing\n");
   for (time_i = 1; time_i < thread_pool_size; time_i++) {
     clock_gettime(CLOCK_MONOTONIC, &time_start);
-    __benchmark(thread_pool_size);
+    func(time_i);
     clock_gettime(CLOCK_MONOTONIC, &time_end);
     during = time_diff(time_start, time_end);
     fprintf(ptr, "%d %f\n", time_i, during);
